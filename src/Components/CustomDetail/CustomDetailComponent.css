@@ -1,0 +1,10 @@
+.componentContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+  }  
+  .componentContent > div i {
+    margin-right: 5px;
+  }

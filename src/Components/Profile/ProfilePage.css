@@ -1,0 +1,62 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .profile-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .profile-form label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+  
+  .profile-form input[type="text"],
+  .profile-form input[type="password"],
+  .profile-form input[type= "tel"],
+  .profile-form input[type= "email"] {
+    width: 250px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+  }
+
+  .profile-form input[type="text"]:focus,
+  .profile-form input[type="password"]:focus,
+  .profile-form input[type= "tel"]:focus,
+  .profile-form input[type= "email"]:focus {
+    border: 1px solid rgba(163, 70, 84, 1.0);
+    border-radius: 20px;
+  }
+  
+  .profile-form button {
+    width: 250px;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    border-radius: 20px;
+    background-color:rgba(163, 70, 84, 1.0);
+    color: white;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .profile-form button:hover {
+    background-color: rgb(161, 59, 74);
+  }
+
+ 

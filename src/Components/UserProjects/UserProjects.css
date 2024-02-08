@@ -1,0 +1,15 @@
+  
+.button-style {
+    background-color:rgba(163, 70, 84, 1.0);
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    right: 15px;
+    position: absolute;
+  }
+  
+  .button-style:hover {
+    background-color: rgb(161, 59, 74);
+  }

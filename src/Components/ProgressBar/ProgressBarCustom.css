@@ -1,0 +1,20 @@
+.progress-bar {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 10px;
+    margin-bottom: 8px;
+  }
+  
+  .progress {
+    height: 10px;
+    background-color: rgba(163, 70, 84, 1.0);
+    border-radius: 10px;
+    position: relative;
+  }
+  
+  .progress-line {
+    height: 100%;
+    background-color: rgba(163, 70, 84, 1.0);
+    border-radius: 10px;
+  }
+  
