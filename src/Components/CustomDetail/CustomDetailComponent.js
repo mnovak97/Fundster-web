@@ -1,8 +1,10 @@
 import React from 'react';
 import "./CustomDetailComponent.css"
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { useTranslation } from 'react-i18next';
 
 const CustomDetailComponent = ({ project, componentType }) => {
+  const { t } = useTranslation();
   const fundedComponent = () => {
     const percentage = ((project.moneyAcquired || 0) / (project.moneyGoal || 1)) * 100;
     const roundedPercentage = percentage.toFixed(1);
@@ -12,7 +14,7 @@ const CustomDetailComponent = ({ project, componentType }) => {
           <i className="fas fa-dollar-sign"></i>
           <span>{roundedPercentage}%</span>
         </div>
-        <p>Funded</p>
+        <p>{t('funded')}</p>
       </div>
     );
   };
@@ -23,7 +25,7 @@ const CustomDetailComponent = ({ project, componentType }) => {
         <i className="fas fa-user"></i>
         <span>{project.backers || 0}</span>
       </div>
-      <p>Backers</p>
+      <p>{t('backers')}</p>
     </div>
   );
 
@@ -35,7 +37,7 @@ const CustomDetailComponent = ({ project, componentType }) => {
           <i className="far fa-clock"></i>
           <span>{daysLeft}</span>
         </div>
-        <p>Days left</p>
+        <p>{t('daysLeft')}</p>
       </div>
     );
   };

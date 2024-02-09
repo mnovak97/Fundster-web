@@ -4,7 +4,7 @@ import CustomDetailComponent from '../CustomDetail/CustomDetailComponent';
 import ProjectDetails from "../ProjectDetails/ProjectDetails";
 import "./ProjectCards.css"
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, setReloadProjects }) => {
   const { name, projectPictureUrl, moneyAcquired, moneyGoal } = project;
   const [showModal, setShowModal] = useState(false);
 
@@ -29,7 +29,7 @@ const ProjectCard = ({ project }) => {
         </div>
       </div>
       {showModal && (
-        <ProjectDetails project={project} closeModal={closeModal} />
+        <ProjectDetails project={project} closeModal={closeModal} setReloadProjects={setReloadProjects} />
       )}
     </div>
   );

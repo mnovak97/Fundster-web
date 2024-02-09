@@ -4,9 +4,12 @@ import ProjectCard from '../ProjectCard/ProjectCard';
 import "./UserProjects.css"
 import CreateProjectPage from '../CreateProject/CreateProjectPage';
 import CookieUtils from '../../Helper/CookieHelper';
+import { useTranslation } from "react-i18next";
 
 const UserProjects = () => {
+    const { t } = useTranslation();
     const [projects, setProjects] = useState([]);
+    const [reloadProjects, setReloadProjects] = useState(false);
     const [userID, setUserID] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const cookieHelper = new CookieUtils()
@@ -16,6 +19,7 @@ const UserProjects = () => {
 
     const closeModal = () => {
         setShowModal(false);
+        setReloadProjects((prev) => !prev);
     };
 
   useEffect(() => {
@@ -28,7 +32,7 @@ const UserProjects = () => {
           console.error('Token verification error:', error.message);
         }
       }
-  }, [])
+  }, [reloadProjects])
 
   const handleCreateProject = () => {
     openModal();
@@ -46,20 +50,20 @@ const UserProjects = () => {
       .catch(error => {
         console.log(error);
       })
-  }, [userID])
+  }, [userID, reloadProjects])
 
   return (
     <div>
     <button onClick={handleCreateProject} className="button-style">
-      Create New Project
+      {t('newProject')}
     </button>
     <ul>
       {projects.map(project => (
-        <ProjectCard key={project.id} project={project} />
+        <ProjectCard key={project.id} project={project} setReloadProjects={setReloadProjects} />
       ))}
     </ul>
     {showModal && (  
-        <CreateProjectPage closeModal={closeModal} />
+        <CreateProjectPage closeModal={closeModal} setReloadProjects={setReloadProjects} />
     )}
   </div>
   )

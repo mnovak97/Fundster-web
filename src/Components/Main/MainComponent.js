@@ -8,6 +8,8 @@ const MainComponent = () => {
 
   const [projects, setProjects] = useState([]);
   const cookieUtils = new CookieUtils();
+  const [reloadProjects, setReloadProjects] = useState(false);
+
   
   useEffect(() =>{
     const token = cookieUtils.getCookie("userToken")
@@ -19,13 +21,13 @@ const MainComponent = () => {
       .catch(error => {
         console.log(error);
       })
-  }, [])
+  }, [reloadProjects])
 
   return (
     <div>
         <ul>
           {projects.map(project =>(
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard key={project.id} project={project} setReloadProjects={setReloadProjects} />
           ))}
         </ul>
     </div>

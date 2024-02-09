@@ -1,5 +1,6 @@
 import {React, useEffect, useState } from 'react'
 import axios from "axios";
+import { useTranslation } from 'react-i18next';
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 import {
@@ -10,8 +11,9 @@ import {
 import "./CreateProjectPage.css"
 import CookieUtils from '../../Helper/CookieHelper';
 
-const CreateProjectPage = ({closeModal}) => {
+const CreateProjectPage = ({closeModal, setReloadProjects}) => {
 
+  const { t } = useTranslation();
   const firebaseConfig = {
     apiKey: "AIzaSyByDs1h968jp_kxQ7iJjOQJJ2IN39K8Owk",
     authDomain: "fundster-f5983.firebaseapp.com",
@@ -71,6 +73,10 @@ const CreateProjectPage = ({closeModal}) => {
     
           if (response.status === 201) {
             console.log("Project creation successful!", response.data);
+            closeModal()
+            setTimeout(() => {
+              setReloadProjects((prev) => !prev);
+            }, 0);
           };
         } catch (error) {
           console.error('Error uploading image:', error);
@@ -82,9 +88,11 @@ const CreateProjectPage = ({closeModal}) => {
 
   return (
     <div className="container">
-    <h2>Create new project</h2>
+      <div className="modal">
+      <button className="close-btn" onClick={closeModal}>X</button>
     <form onSubmit={handleSubmit} className="new-project-form">
-      <label>Project name:</label>
+      <h2>{t('newProject')}</h2>
+      <label>{t('projectName')}</label>
       <input
         name="name"
         type="text"
@@ -93,7 +101,7 @@ const CreateProjectPage = ({closeModal}) => {
         value={formData.name}
         required
       />
-      <label>Description:</label>
+      <label>{t('description')}</label>
       <input
         name="description"
         type="text"
@@ -104,7 +112,7 @@ const CreateProjectPage = ({closeModal}) => {
       />
 
       <label>
-        Money goal:
+        {t('moneyGoal')}
       </label>
       <input
         name="moneyGoal"
@@ -116,7 +124,7 @@ const CreateProjectPage = ({closeModal}) => {
       />
 
       <label>
-        Deadline:
+        {t('deadline')}
       </label>
       <input
         type="datetime-local"
@@ -125,7 +133,7 @@ const CreateProjectPage = ({closeModal}) => {
         onChange={handleChange}
         required
       />
-      <label>Project Image:</label>
+      <label>{t('projectImage')}</label>
       <input
         type="file"
         accept="image/*"
@@ -133,9 +141,10 @@ const CreateProjectPage = ({closeModal}) => {
         required
       />
       <button type="submit">
-        Create new project
+        {t('newProject')}
       </button>
     </form>
+    </div>
   </div>
   )
 }

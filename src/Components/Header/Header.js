@@ -3,9 +3,11 @@ import "./Header.css"
 import { useCookies } from "react-cookie";
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 
 const Header = () => {
-
+    const { t } = useTranslation();
     const [cookie, removeCookie] = useCookies(["userToken"]);
     const navigate = useNavigate();
 
@@ -21,10 +23,10 @@ const Header = () => {
             <span className="logo-overlay">ster</span>
         </div>
         <ul>
-            <li><Link to="/">Projects</Link></li>
-            <li><Link to="/userProjects">Your projects</Link></li>
-            <li><Link to="/profile">Profile</Link></li>
-            <li onClick={logOut}><a>Log Out</a></li>
+            <li><Link to="/">{t('projects')}</Link></li>
+            <li><Link to="/userProjects">{t('myProjects')}</Link></li>
+            <li><Link to="/profile">{t('profile')}</Link></li>
+            <li onClick={logOut}><a>{t('logOut')}</a></li>
         </ul>
     </nav>
   )

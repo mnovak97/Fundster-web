@@ -1,9 +1,11 @@
 import {React, useEffect, useState } from "react";
 import axios from "axios";
 import "./ProfilePage.css";
+import { useTranslation } from "react-i18next";
 import CookieUtils from "../../Helper/CookieHelper";
 
 const ProfilePage = () => {
+  const { t, i18n } = useTranslation();
   const [formData, setFormData] = useState({
     id: 0,
     name: "",
@@ -15,7 +17,7 @@ const ProfilePage = () => {
     projects: [],
     favouriteProjects: []
   });
-
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
   useEffect(() => {
     const fetchUserData = async () => {
       const cookieHelper = new CookieUtils()
@@ -61,6 +63,10 @@ const ProfilePage = () => {
       console.error('Error updating user data:', error);
     }
   };
+  const handleLanguageChange = (selectedLanguage) => {
+    i18n.changeLanguage(selectedLanguage);
+    setSelectedLanguage(selectedLanguage)
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -68,16 +74,16 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container-profile">
       <form onSubmit={handleSubmit} className="profile-form">
           <label>
-            Name
+            {t('name')}
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="Enter name"
+              placeholder={t('namePlaceholder')}
             />
           </label>
           <label>
@@ -87,20 +93,29 @@ const ProfilePage = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="Enter email"
+              placeholder= {t('emailPlaceholder')}
             />
           </label>
           <label>
-            Phone Number
+            {t('telephone')}
             <input
               type="tel"
               name="telephone"
               value={formData.phoneNumber}
               onChange={handleChange}
-              placeholder="Enter email"
+              placeholder={t('telPlaceholder')}
             />
           </label>
-          <button type="submit">Update data</button>
+          <button type="submit">{t('updateUser')}</button>
+          <div className="language-options">
+        <label>
+          {t("selectLanguage")}:
+          <select onChange={(e) => handleLanguageChange(e.target.value)} value={selectedLanguage}>
+            <option value="en">English</option>
+            <option value="cro">Croatian</option>
+          </select>
+        </label>
+      </div>
         </form>
     </div>
   )

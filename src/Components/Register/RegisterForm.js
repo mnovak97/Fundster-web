@@ -4,8 +4,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useCookies } from "react-cookie";
 import { Link } from 'react-router-dom';
 import "./RegisterForm.css";
+import { useTranslation } from "react-i18next";
 
 const RegisterForm = () => {
+    const { t } = useTranslation();
     const [cookie, setCookie] = useCookies(["userToken"]);
     const navigate = useNavigate();
     const location = useLocation();
@@ -67,9 +69,9 @@ const RegisterForm = () => {
   return (
     <>
       <div className="container">
-        <h2>Register</h2>
+        <h2>{t('register')}</h2>
         <form onSubmit={handleSubmit} className="registration-form">
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">{t('nameRegister')}</label>
           <input
             name="name"
             type="text"
@@ -79,7 +81,7 @@ const RegisterForm = () => {
             value={formData.name}
             required
           />
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email">{t('emailRegister')}</label>
           <input
             name="email"
             type="email"
@@ -91,7 +93,7 @@ const RegisterForm = () => {
           />
 
           <label htmlFor="tel">
-            Phone number:
+            {t('telRegister')}
           </label>
           <input
             name="phoneNumber"
@@ -104,7 +106,7 @@ const RegisterForm = () => {
           />
 
           <label htmlFor="password">
-            Password:
+            {t('passwordRegister')}
           </label>
           <input
             name="password"
@@ -121,13 +123,13 @@ const RegisterForm = () => {
                 : false
             }
           >
-            Sign Up
+            {t('register')}
           </button>
         </form>
         <p>
-          Already registered?
+          {t('registerQuestion')}
           <br />
-          <span className="line">{<Link to="/login">Log In</Link>}</span>
+          <span className="line">{<Link to="/login">{t('login')}</Link>}</span>
         </p>
       </div>
     </>
